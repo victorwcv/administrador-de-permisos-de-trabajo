@@ -210,7 +210,7 @@ export const generateRandomWorkPermit = (): Partial<WorkPermit> => ({
   contractor: generateRandomContractor(),
   executorName: generateRandomExecutorName(),
   requirements: generateRandomRequirements(),
-  approved: generateRandomApproved(),
+  approved:  "Aprobado",
   comments: generateRandomComments(),
   openHour: null,
   closeHour: null,
