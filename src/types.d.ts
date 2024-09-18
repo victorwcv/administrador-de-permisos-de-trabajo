@@ -19,7 +19,7 @@ export interface WorkPermit {
   openHour: string | null;
   closeHour: string | null;
   date: string;
-  coordinates?: Coordinatesoordinates;
+  coordinates?: Coordinates;
 }
 
-type Coordinates = { x: number | null; y: number | null };
+export type Coordinates = { x: number | null; y: number | null };
