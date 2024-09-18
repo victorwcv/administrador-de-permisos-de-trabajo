@@ -1,21 +1,21 @@
-import React, { createContext, useState, useContext, ReactNode } from 'react';
+import React, { createContext, useState, useContext, ReactNode } from "react";
+import { WorkPermit } from "../types";
 
-// Definir el tipo para el contexto
+// defines the types and creates the context
 interface PlotContextType {
-  workPermit: any; // Puedes definir un tipo más específico según lo que esperas
-  setWorkPermit: React.Dispatch<React.SetStateAction<any>>; // Cambiar 'any' por el tipo adecuado
+  workPermit: WorkPermit | null;
+  setWorkPermit: React.Dispatch<React.SetStateAction<WorkPermit | null>>;
 }
 
-// Crear el contexto con un valor predeterminado que puede ser undefined
-const PlotContext = createContext<PlotContextType | undefined>(undefined);
+const PlotContext = createContext<PlotContextType | null>(null);
 
-// Crear un proveedor del contexto
+// creates a provider for the PlotContext
 interface PlotProviderProps {
   children: ReactNode;
 }
 
 export const PlotProvider: React.FC<PlotProviderProps> = ({ children }) => {
-  const [workPermit, setWorkPermit] = useState<any>(null); // Cambiar 'any' por el tipo adecuado
+  const [workPermit, setWorkPermit] = useState<WorkPermit | null>(null);
 
   return (
     <PlotContext.Provider value={{ workPermit, setWorkPermit }}>
@@ -24,11 +24,11 @@ export const PlotProvider: React.FC<PlotProviderProps> = ({ children }) => {
   );
 };
 
-// Custom hook para usar el contexto
+// custom hook to use the PlotContext
 export const usePlotContext = (): PlotContextType => {
   const context = useContext(PlotContext);
-  if (context === undefined) {
-    throw new Error('usePlotContext must be used within a PlotProvider');
+  if (context === null) {
+    throw new Error("usePlotContext must be used within a PlotProvider");
   }
   return context;
 };

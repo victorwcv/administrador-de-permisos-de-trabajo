@@ -1,12 +1,12 @@
+import { getAllReportsOfDayFromDB } from "../../../firestore";
 import { AnimatePresence, motion } from "framer-motion";
-import { icons } from "../../../assets/icons/IconProvider";
 import { useRef, useState } from "react";
-import CustomButton from "../../../components/CustomButton";
-import { WorkPermit } from "../../../types";
 import { useAppContext } from "../../../context/AppContext";
+import { WorkPermit } from "../../../types";
+import { icons } from "../../../assets/icons/IconProvider";
+import CustomButton from "../../../components/CustomButton";
 import { useForm } from "react-hook-form";
 import CustomInput from "../../../components/CustomInput";
-import { getAllReportsOfDayFromDB } from "../../../firestore";
 import { formatDate } from "../../../utils/dates";
 
 interface ValuesSubmit {

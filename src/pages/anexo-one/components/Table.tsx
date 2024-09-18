@@ -118,8 +118,8 @@ const Table = ({ sharedData, onEditTime }: TableProps) => {
                 <td>{item.estimatedEndDate}</td>
                 <td>{item.approved}</td>
                 <td>{item.comments}</td>
-                <td>{item.openHour ?? "N/A"}</td>
-                <td>{item.closeHour ?? "N/A"}</td>
+                <td>{item.openHour || "N/A"}</td>
+                <td>{item.closeHour || "N/A"}</td>
                 <td>{item.date}</td>
                 <td>
                   <div className="flex gap-2">

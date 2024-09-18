@@ -21,7 +21,7 @@ interface StatusProps {
 }
 
 function FormCreatePermit({ onClose }: FormCreatePermitProps) {
-  const { sharedData, setSharedData } = useAppContext();
+  const { setSharedData } = useAppContext();
   const [status, setStatus] = useState<StatusProps>({
     loading: false,
     status: false,
@@ -42,20 +42,24 @@ function FormCreatePermit({ onClose }: FormCreatePermitProps) {
       coordinates: { x: null, y: null },
     },
   });
+
+  // Submites the form with the values from the form to create a new permit
   const onSubmit = async (values: Partial<WorkPermit>) => {
     setStatus({ loading: true, status: false });
+
     const result = await saveNewReportToDB(values);
+
     if (result) {
       setStatus({
         loading: false,
         status: true,
         message: "Guardado exitosamente!",
       });
-      console.log(result);
-      setSharedData([...sharedData, result] as WorkPermit[]);
-      // reset();
+
+      // Actualizar el estado del contexto global si se guardaron los datos correctamente
+      setSharedData((prevData) => [...prevData, values] as WorkPermit[]);
+
       onClose();
-      console.log("saved");
     } else {
       setStatus({
         loading: false,
@@ -297,23 +301,6 @@ function FormCreatePermit({ onClose }: FormCreatePermitProps) {
             />
           </div>
 
-          <div className="flex flex-wrap justify-center gap-x-4 ">
-            <CustomInput
-              type="time"
-              label="Hora de Apertura"
-              name="openHour"
-              register={register("openHour")}
-              errors={errors}
-            />
-
-            <CustomInput
-              type="time"
-              label="Hora de Cierre"
-              name="closeHour"
-              register={register("closeHour")}
-              errors={errors}
-            />
-          </div>
           <div className="flex m-4 justify-end">
             <CustomButton
               label={status.loading ? "Guardando..." : "Guardar"}

@@ -20,6 +20,7 @@ import {
   FaRightFromBracket,
   FaMapLocation,
   FaLocationDot,
+  FaHelmetSafety,
 } from "react-icons/fa6";
 import {
   MdEditDocument,
@@ -62,4 +63,5 @@ export const icons = {
   trash: FaTrash,
   edit: FaEdit,
   timer: MdTimer,
+  helmet: FaHelmetSafety,
 };

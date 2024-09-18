@@ -8,10 +8,11 @@ interface CustomInputProps {
   label?: string;
   placeholder?: string;
   name: string;
-  register: any;
+  register?: any;
   errors?: any;
   inputStyle?: string;
-  onChange?: () => void;
+  value?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onBlur?: () => void;
 }
 
@@ -26,6 +27,8 @@ function CustomInput({
   errors = {},
   inputStyle = "",
   onBlur = () => {},
+  value,
+  onChange = () => {},
 }: CustomInputProps) {
   const [showPassword, setShowPassword] = useState(false);
 
@@ -40,6 +43,7 @@ function CustomInput({
           {label}
         </label>
         <input
+          value={value}
           id={name}
           list={`options-${name}`}
           {...register}
@@ -47,6 +51,7 @@ function CustomInput({
           className={`block w-full px-3 py-2 border ${inputStyle} ${
             errors[name] ? "border-red-500" : "dark:border-space-400"
           } rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent focus:dark:border-transparent resize-none`}
+
         />
         <datalist id={`options-${name}`}>
           {options.map((option) => (
@@ -82,6 +87,8 @@ function CustomInput({
           {label}
         </label>
         <select
+          onChange={onChange}
+          value={value}
           id={name}
           {...register}
           className={`block w-full min-w-52 px-3 py-2 border ${inputStyle} ${
@@ -131,6 +138,7 @@ function CustomInput({
             errors[name] ? "border-red-500" : "dark:border-space-400"
           } rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent focus:dark:border-transparent`}
           onBlur={onBlur}
+          value={value}
         />
       </div>
 

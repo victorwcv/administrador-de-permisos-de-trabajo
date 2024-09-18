@@ -1,6 +1,5 @@
 import { Outlet } from "react-router-dom";
 import SideBar from "./components/SideBar";
-import { PlotProvider } from "../../context/PlotContext";
 import { useEffect } from "react";
 import { getAllReportsOfDayFromDB } from "../../firestore";
 import { WorkPermit } from "../../types";
@@ -19,12 +18,10 @@ function AppPage() {
   }, []);
 
   return (
-    <PlotProvider>
-      <section className="relative flex overflow-y-hidden bg-gray-200">
-        <SideBar />
-        <Outlet />
-      </section>
-    </PlotProvider>
+    <section className="relative flex overflow-y-hidden bg-gray-200">
+      <SideBar />
+      <Outlet />
+    </section>
   );
 }
 

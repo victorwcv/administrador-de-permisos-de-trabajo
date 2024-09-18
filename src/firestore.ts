@@ -9,9 +9,12 @@ import {
   where,
   QuerySnapshot,
   DocumentData,
+  onSnapshot,
+  Unsubscribe,
 } from "firebase/firestore";
 import { db } from "./firebase";
 import { WorkPermit } from "./types";
+import { formatDate } from "./utils/dates";
 
 // Save new entry to Firestore
 export const saveNewReportToDB = async (data: Partial<WorkPermit>) => {
@@ -49,6 +52,26 @@ export const getAllReportsOfDayFromDB = async (
     console.error("Error fetching reports: ", e);
     return undefined;
   }
+};
+
+// Listens all changes in Reports of the days from Firestore
+export const listenChangesInReportsOfDayFromDB = (
+  setData: (data: DocumentData[]) => void
+): Unsubscribe => {
+  //  gets current date
+  const date = formatDate();
+  // Queryto get all reports of the day
+  const q = query(collection(db, "reports"), where("date", "==", date));
+
+  // listens changes in Reports of the days from Firestore
+
+  const unsubscribe = onSnapshot(q, (snapshot) => {
+    const data = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+    setData(data);
+  });
+
+  // return unsubscribe function to stop listening
+  return unsubscribe;
 };
 
 // Delete Report by ID from Firestore

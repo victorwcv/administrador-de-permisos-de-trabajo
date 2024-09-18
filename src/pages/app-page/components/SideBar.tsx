@@ -16,11 +16,6 @@ const sidebarOptions = [
     to: "",
   },
   {
-    label: "Lecciones por Aprender",
-    icon: icons.book,
-    to: "",
-  },
-  {
     label: "Permisos de Trabajo",
     icon: icons.document,
     to: "",
@@ -72,7 +67,7 @@ function SideBar() {
         }`}
       >
         <div className="h-16 bg-white p-2">
-          <img src="/pluspetrol.webp" alt="" className="h-full mx-auto" />
+          <img src="/logo.png" alt="" className="h-full mx-auto" />
         </div>
         <div className="h-32 border-b border-gray-500 flex justify-center items-center p-4 gap-4">
           <img

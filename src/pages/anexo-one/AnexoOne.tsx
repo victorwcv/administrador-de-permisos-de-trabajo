@@ -49,9 +49,9 @@ function AnexoOne() {
         </div>
         <p className="text-xs pt-1">
           <Link to={"/app/"} className="text-blue-500">
-            Inicio
+            Inicio{" "}
           </Link>
-          <span> Anexo 1</span>
+          <span>/{" "}Anexo 1</span>
         </p>
       </div>
       
