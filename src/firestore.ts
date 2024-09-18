@@ -25,9 +25,9 @@ export const saveNewReportToDB = async (data: Partial<WorkPermit>) => {
 
     // Guardar el documento con el id incluido en el objeto
     await setDoc(docRef, dataWithId);
-
     console.log("Document written with ID: ", id);
-    return dataWithId;
+
+    return true;
   } catch (e) {
     console.error("Error adding document: ", e);
     return false;
@@ -66,7 +66,7 @@ export const deleteReportfromDB = async (id: string) => {
 export const updateReportInDB = async (
   id: string,
   updateData: Partial<WorkPermit>
-): Promise<boolean> => {
+) => {
   try {
     const docRef = doc(db, "reports", id);
     await updateDoc(docRef, updateData as DocumentData);
