@@ -97,7 +97,7 @@ function Map() {
                       <icons.locationDot />
                     </p>
 
-                    <small className="text-sm text-white inline-flex items-center gap-1">
+                    <small className="text-sm text-green-500 inline-flex items-center gap-1 text-s">
                       <strong>{workPermit.people}</strong> <icons.helmet />
                     </small>
                   </div>

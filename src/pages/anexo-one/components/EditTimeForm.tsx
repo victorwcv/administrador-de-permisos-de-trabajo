@@ -21,6 +21,7 @@ interface StatusProps {
 
 function EditTimeForm({ onClose, permitData }: EditTimeFormProps) {
   const { setSharedData } = useAppContext();
+  console.log(permitData);
 
   const [coordinates, setCoordinates] = useState<Coordinates | undefined>();
   const [showMap, setShowMap] = useState(false);
@@ -55,6 +56,8 @@ function EditTimeForm({ onClose, permitData }: EditTimeFormProps) {
     };
 
     setStatus({ loading: true, success: false });
+    console.log(permitData.id, newValues);
+
     const result = await updateReportInDB(permitData.id, newValues);
 
     if (result) {

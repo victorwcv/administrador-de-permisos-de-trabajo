@@ -19,8 +19,8 @@ export default {
         },
       },
       boxShadow: {
-        "custom-right": "10px 0 15px rgba(0, 0, 0, 0.2)", // Sombra hacia la derecha
-      },
+        "custom-right": "10px 0 15px rgba(0, 0, 0, 0.2)",
+      }
     },
   },
   plugins: [require("@tailwindcss/aspect-ratio")],
