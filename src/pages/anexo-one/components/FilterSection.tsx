@@ -15,9 +15,11 @@ interface ValuesSubmit {
 
 function FilterSection() {
   const { sharedData, setSharedData } = useAppContext();
+  const [filterArea, setFilterArea] = useState("");
   const [isFilterTabOpen, setIsFilterTabOpen] = useState<boolean>(false);
   // Ref para evitar el re-render de los datos
-  const dataRef = useRef<WorkPermit[]>(sharedData);
+  const dataRef = useRef<WorkPermit[] | null>(null);
+  console.log(dataRef.current);
 
   const {
     register,
@@ -30,23 +32,44 @@ function FilterSection() {
   });
 
   const onSubmit = async (values: ValuesSubmit) => {
-    // Si no hay fecha, no hace nada
-    if (!values.date) {
-      return;
+    console.log(values);
+
+    // setear Ref para no hacer renderizado
+    if (!dataRef.current) {
+      console.log("setear Ref para no hacer renderizado");
+      dataRef.current = sharedData;
+      console.log(dataRef.current);
     }
 
     // Si la fecha es la actual, restaura los datos desde la referencia
     if (formatDate() === values.date) {
+      console.log(formatDate(), values.date);
+
       setSharedData(dataRef.current);
+      dataRef.current = null;
+    } else {
+      // Si la fecha es distinta, actualiza los datos desde la base de datos
+      const result = await getAllReportsOfDayFromDB(values.date);
+      if (result) {
+        setSharedData(result as WorkPermit[]);
+      }
+    }
+  };
+
+  const HandleFilterByArea = () => {
+    if (!dataRef.current) {
+      dataRef.current = sharedData;
+    }
+    if (filterArea === "") {
+      setSharedData(dataRef.current);
+      dataRef.current = null;
       return;
     }
 
-    // Obtener los datos para la fecha específica
-    const result = await getAllReportsOfDayFromDB(values.date);
-    if (result) {
-      dataRef.current = sharedData;
-      setSharedData(result as WorkPermit[]);
-    }
+    const filteredData = dataRef.current.filter(
+      (item) => item.area === filterArea
+    );
+    setSharedData(filteredData);
   };
 
   return (
@@ -58,7 +81,7 @@ function FilterSection() {
             className="text-lg font-bold cursor-pointer"
             onClick={() => setIsFilterTabOpen(!isFilterTabOpen)}
           >
-            Filtro por fecha de creación
+            Filtrar PDTs
           </p>
           <motion.button
             className="ml-auto p-1 outline-none"
@@ -78,30 +101,65 @@ function FilterSection() {
               exit={{ height: 0, opacity: 0 }}
               transition={{ duration: 0.5, ease: "easeInOut" }}
             >
-              <div className="py-2 px-4">
-                <p className="font-bold">Fecha de creacion</p>
-                <form
-                  className="flex flex-wrap md:justify-start justify-center items-center gap-x-4 mt-2 mb-4"
-                  onSubmit={handleSubmit(onSubmit)}
-                >
-                  <CustomInput
-                    type="date"
-                    name="date"
-                    register={register("date", {
-                      required: "Ingrese una fecha",
-                    })}
-                    errors={errors}
-                    label=""
-                    inputStyle=""
-                  />
+              <div className="flex py-2 px-4 gap-8">
+                <div>
+                  <p className="font-bold">Por fecha de creacion</p>
+                  <form
+                    className="flex flex-wrap md:justify-start justify-center items-center gap-x-1 mt-2 mb-4"
+                    onSubmit={handleSubmit(onSubmit)}
+                  >
+                    <CustomInput
+                      type="date"
+                      name="date"
+                      register={register("date", {
+                        required: "Ingrese una fecha",
+                      })}
+                      errors={errors}
+                    />
 
-                  <CustomButton
-                    type="submit"
-                    label="Aplicar"
-                    icon={<icons.filter />}
-                    btnStyles="mb-4"
-                  />
-                </form>
+                    <CustomButton
+                      type="submit"
+                      label="Aplicar"
+                      icon={<icons.filter />}
+                      btnStyles="mb-4"
+                    />
+                  </form>
+                </div>
+                <div>
+                  <p className="font-bold">Por Area/Sitio</p>
+                  <form
+                    className="flex flex-wrap md:justify-start justify-center items-center gap-x-1 mt-2 mb-4"
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      HandleFilterByArea();
+                    }}
+                  >
+                    <CustomInput
+                      as="select"
+                      options={[
+                        "SS.AA. 1",
+                        "SS.AA. 2",
+                        "Procesos 1",
+                        "Procesos 2",
+                        "Procesos 3",
+                        "Produccion",
+                      ]}
+                      value={filterArea}
+                      name="area"
+                      type="text"
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                        setFilterArea(e.target.value)
+                      }
+                    />
+
+                    <CustomButton
+                      type="submit"
+                      label="Aplicar"
+                      icon={<icons.filter />}
+                      btnStyles="mb-4"
+                    />
+                  </form>
+                </div>
               </div>
             </motion.div>
           )}
