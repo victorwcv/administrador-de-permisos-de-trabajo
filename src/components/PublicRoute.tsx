@@ -1,11 +1,11 @@
 import { Navigate } from "react-router-dom";
 import LoginPage from "../pages/login-page/LoginPage";
-// import { useUser } from "../context/UserContext";
+import { useUser } from "../context/UserContext";
 
 function PublicRoute() {
-  // const { user } = useUser();
+  const { user } = useUser();
 
-  return true ? <Navigate to="/app/anexo-one" /> : <LoginPage />;
+  return !user ? <LoginPage /> : <Navigate to="/app/anexo-one" />;
 }
 
 export default PublicRoute;

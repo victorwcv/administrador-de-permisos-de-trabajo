@@ -7,7 +7,6 @@ import { formatDate } from "../../../utils/dates";
 import { saveNewReportToDB } from "../../../firestore";
 import { useState } from "react";
 import { WorkPermit } from "../../../types";
-import { generateRandomWorkPermit } from "../../../mock/permitMock";
 import { useAppContext } from "../../../context/AppContext";
 
 interface FormCreatePermitProps {
@@ -32,12 +31,28 @@ function FormCreatePermit({ onClose }: FormCreatePermitProps) {
     register,
     handleSubmit,
     formState: { errors },
-    // reset,
+    reset,
   } = useForm({
     defaultValues: {
       id: "",
-      ...generateRandomWorkPermit(),
+      category: "",
+      codePDT: "",
+      typeWork: "",
+      startProgHour: "",
+      area: "",
+      equipment: "",
+      description: "",
       people: 0,
+      authority: "",
+      contractor: "",
+      executorName: "",
+      requirements: "",
+      estimatedStartDate: "",
+      estimatedEndDate: "",
+      approved: "",
+      comments: "",
+      openHour: "",
+      closeHour: "",
       date: formatDate(),
       coordinates: { x: null, y: null },
     },
@@ -59,7 +74,7 @@ function FormCreatePermit({ onClose }: FormCreatePermitProps) {
       // Actualizar el estado del contexto global si se guardaron los datos correctamente
       setSharedData((prevData) => [...prevData, values] as WorkPermit[]);
 
-      onClose();
+      reset();
     } else {
       setStatus({
         loading: false,
@@ -78,37 +93,27 @@ function FormCreatePermit({ onClose }: FormCreatePermitProps) {
     "Produccion",
   ];
   const autority = [
-    "F. Torres",
-    "M. Navarrete",
-    "V. Lajo",
-    "R. Martinez",
-    "A. Gil",
-    "L. Sandoval",
-    "I. Munarriz",
-    "W. Kianman",
-    "V. Lajo",
-    "M. Navarrete",
-    "J. Cardenas",
-    "E. Martinez",
+    "D. Fernández",
+    "L. Ramírez",
+    "C. Benítez",
+    "J. Soto",
+    "E. Vargas",
+    "A. Quiroz",
+    "T. Ortiz",
+    "R. Maldonado",
+    "F. Delgado",
+    "B. Rojas",
   ];
 
   const contractor = [
-    "APPLUS END",
-    "APTIM .",
-    "APTIM I/C",
-    "Aptim CBM.",
-    "Aptim Elect.",
-    "Aptim Meca.",
-    "Aptim SSGG.",
-    "CONFIPETROL",
-    "CONFIP / PROY",
-    "CPPQ",
-    "ICCE",
-    "OTECRIERA",
-    "PROSECOR",
-    "SHERWIN",
-    "SOLAR TURBINES",
-    "TAMOIN",
+    "TECHSERV",
+    "INDUSTRAC",
+    "MEGATEC",
+    "ECOLOGICA",
+    "GEOTEC",
+    "CONSTRUCTEC",
+    "INGECOM",
+    "TERMOPOWER",
   ];
 
   return (
