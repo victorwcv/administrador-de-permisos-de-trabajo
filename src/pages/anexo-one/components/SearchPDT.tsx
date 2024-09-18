@@ -61,19 +61,22 @@ function SearchPDT() {
   };
 
   return (
-    <div>
-      <form className="flex items-start mt-2" onSubmit={handleSubmit(onsubmit)}>
+    <div className="sm:w-auto w-full">
+      <form
+        className="flex items-start"
+        onSubmit={handleSubmit(onsubmit)}
+      >
         <CustomInput
           name={"codePDT"}
           register={register("codePDT")}
           placeholder="Buscar PDT"
-          inputStyle="rounded-r-none w-60"
+          inputStyle="rounded-r-none flex-1"
           onBlur={handleBlur}
         />
         <CustomButton
           type="submit"
           icon={<icons.search />}
-          btnStyles="h-11 mb-4 rounded-l-none focus:ring-transparent"
+          btnStyles="h-11 mb-4 w-16 rounded-l-none focus:ring-transparent"
         />
       </form>
     </div>

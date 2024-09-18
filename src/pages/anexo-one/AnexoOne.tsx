@@ -51,10 +51,10 @@ function AnexoOne() {
           <Link to={"/app/"} className="text-blue-500">
             Inicio{" "}
           </Link>
-          <span>/{" "}Anexo 1</span>
+          <span>/ Anexo 1</span>
         </p>
       </div>
-      
+
       {/* filters */}
       <FilterSection />
 
@@ -62,21 +62,26 @@ function AnexoOne() {
       <div className="flex-1 flex flex-col bg-white p-4 mx-4 mb-4 rounded shadow overflow-auto">
         {/* buttons and search input */}
         <div className="flex flex-wrap gap-2 items-baseline md:justify-between justify-center">
-          <div className="flex flex-wrap justify-center gap-2">
-            <input ref={openFileRef} type="file" className="hidden" />
-            <CustomButton
-              label="Importar Excel"
-              icon={<icons.documentText />}
-              onClick={handleFileOpen}
-            />
+          <div className="sm:w-full w-auto flex flex-wrap justify-between items-start gap-2">
+            <div className="flex flex-wrap sm:w-auto w-full gap-2">
+              <input ref={openFileRef} type="file" className="hidden" />
+              <CustomButton
+                label="Importar Excel"
+                icon={<icons.documentText />}
+                onClick={handleFileOpen}
+                btnStyles="sm:w-auto w-full h-11 px-4"
+              />
 
-            <CustomButton
-              label="Crear nuevo permiso"
-              icon={<icons.plus />}
-              onClick={handleFormOpen}
-            />
+              <CustomButton
+                label="Crear nuevo permiso"
+                icon={<icons.plus />}
+                onClick={handleFormOpen}
+                btnStyles="sm:w-auto w-full h-11 px-4"
+              />
+            </div>
+
+            <SearchPDT />
           </div>
-          <SearchPDT />
         </div>
         <div
           ref={scrollRef}

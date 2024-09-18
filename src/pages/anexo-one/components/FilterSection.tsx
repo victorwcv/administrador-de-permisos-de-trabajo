@@ -101,11 +101,11 @@ function FilterSection() {
               exit={{ height: 0, opacity: 0 }}
               transition={{ duration: 0.5, ease: "easeInOut" }}
             >
-              <div className="flex py-2 px-4 gap-8">
-                <div>
+              <div className="sm:w-auto w-full flex sm:justify-start justify-center flex-wrap py-2 px-4 gap-x-8">
+                <div className="sm:w-auto w-full">
                   <p className="font-bold">Por fecha de creacion</p>
                   <form
-                    className="flex flex-wrap md:justify-start justify-center items-center gap-x-1 mt-2 mb-4"
+                    className="flex flex-wrap justify-center items-center gap-x-1 mt-2 mb-4"
                     onSubmit={handleSubmit(onSubmit)}
                   >
                     <CustomInput
@@ -125,10 +125,10 @@ function FilterSection() {
                     />
                   </form>
                 </div>
-                <div>
+                <div className="sm:w-auto w-full">
                   <p className="font-bold">Por Area/Sitio</p>
                   <form
-                    className="flex flex-wrap md:justify-start justify-center items-center gap-x-1 mt-2 mb-4"
+                    className="flex flex-wrap justify-center items-center gap-x-1 mt-2 mb-4"
                     onSubmit={(e) => {
                       e.preventDefault();
                       HandleFilterByArea();

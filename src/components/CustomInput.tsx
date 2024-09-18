@@ -82,7 +82,7 @@ function CustomInput({
 
   if (as === "select") {
     return (
-      <div className="relative mb-4">
+      <div className="relative sm:w-auto w-full mb-4">
         <label htmlFor={name} className="block ml-1">
           {label}
         </label>
@@ -91,7 +91,7 @@ function CustomInput({
           value={value}
           id={name}
           {...register}
-          className={`block w-full min-w-52 px-3 py-2 border ${inputStyle} ${
+          className={`block w-full min-w-52 h-11 px-3 py-2 border ${inputStyle} ${
             errors[name] ? "border-red-500" : "dark:border-space-400"
           } rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent focus:dark:border-transparent`}
         >
@@ -114,7 +114,7 @@ function CustomInput({
   }
 
   return (
-    <div className="relative mb-4">
+    <div className="relative sm:w-auto w-full mb-4">
       <label htmlFor={name} className="block ml-1">
         {label}
       </label>
