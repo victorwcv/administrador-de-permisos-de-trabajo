@@ -23,41 +23,14 @@ function MapInfo() {
           <ul className="text-center">
             <li className="mb-1 flex justify-between">
               <span className=" text-left font-semibold">
-                Permisos registrados:{" "}
+                Permisos programados:
               </span>
               <span>{sharedData?.length}</span>
             </li>
 
             <li className="mb-1 flex justify-between">
               <span className=" text-left font-semibold">
-                Permisos abiertos:{" "}
-              </span>
-              {sharedData?.filter((entry) => entry.openHour).length}
-            </li>
-            <li className="mb-1 flex justify-between">
-              <span className=" text-left font-semibold">
-                Permisos por abrir:{" "}
-              </span>
-              {
-                sharedData?.filter(
-                  (entry) => !entry.openHour && !entry.closeHour
-                ).length
-              }
-            </li>
-
-            <li className="mb-1 flex justify-between">
-              <span className=" text-left font-semibold">
-                Permisos cerrados:{" "}
-              </span>
-              {
-                sharedData?.filter((entry) => entry.openHour && entry.closeHour)
-                  .length
-              }
-            </li>
-
-            <li className="mb-1 flex justify-between">
-              <span className=" text-left font-semibold">
-                Permisos en ejecucion:{" "}
+                Permisos en ejecución:
               </span>
               {
                 sharedData?.filter(
@@ -66,7 +39,18 @@ function MapInfo() {
               }
             </li>
             <li className="mb-1 flex justify-between">
-              <p className="font-semibold">Total personas en ejecucion: </p>
+              <span className=" text-left font-semibold">
+                Permisos ejecutados:
+              </span>
+              {
+                sharedData?.filter((entry) => entry.openHour && entry.closeHour)
+                  .length
+              }
+            </li>
+
+            
+            <li className="mb-1 flex justify-between">
+              <p className="font-semibold">Personal contratista en campo: </p>
               {sharedData
                 ?.filter((entry) => entry.openHour && !entry.closeHour)
                 .reduce((prev, curr) => prev + curr?.people, 0)}

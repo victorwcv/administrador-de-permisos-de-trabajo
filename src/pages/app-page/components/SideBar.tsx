@@ -26,7 +26,7 @@ const sidebarOptions = [
     to: "/app/anexo-one",
   },
   {
-    label: "Locacion de Permisos",
+    label: "Ubicación de permisos",
     icon: icons.location,
     to: "/app/map-view",
   },

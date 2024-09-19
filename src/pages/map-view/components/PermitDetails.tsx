@@ -12,6 +12,8 @@ function PermitDetails({ workPermit }: PermitDetailsProps) {
           {workPermit.codePDT}
         </h3>
         <div className="text-center">
+          <h5 className="font-semibold mt-1">Tarea</h5>
+          <p> {workPermit.description}</p>
           <h5 className="font-semibold mt-1">Area</h5>
           <p> {workPermit.area}</p>
           <h5 className="font-semibold mt-1">Ejecutante</h5>

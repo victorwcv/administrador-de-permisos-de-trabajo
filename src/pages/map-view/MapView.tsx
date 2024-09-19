@@ -24,7 +24,7 @@ function MapView() {
       {/* title */}
       <div className="shadow p-4 bg-white">
         <div className="border-b pb-4 lg:text-left text-center">
-          <h2 className="lg:text-3xl text-xl">Locación de Permisos</h2>
+          <h2 className="lg:text-3xl text-xl">Ubicación de permisos</h2>
           <p className="lg:text-base text-xs">
             Visualizacion de permisos abiertos en vivo
           </p>

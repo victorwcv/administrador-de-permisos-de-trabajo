@@ -54,7 +54,7 @@ function Map() {
       </div>
 
       {/* map */}
-      <div className="absolute inset-0 p-4">
+      <div className={`absolute inset-0 ${isFullScreen ? "p-0" : "p-4"} `}>
         <div
           ref={scrollRef}
           onWheel={(e) => handleWheel(e, scrollRef)}
@@ -72,7 +72,8 @@ function Map() {
 
             {sharedData?.map(
               (workPermit) =>
-                workPermit?.openHour && !workPermit?.closeHour && (
+                workPermit?.openHour &&
+                !workPermit?.closeHour && (
                   <div
                     key={workPermit.id}
                     className="absolute h-auto rounded-full flex flex-col items-center justify-center cursor-pointer"
@@ -87,6 +88,9 @@ function Map() {
                     }}
                     title={workPermit.codePDT + " " + "Click para ver detalles"}
                   >
+                    <small className="text-xs text-white bg-black px-1 rounded inline-flex items-center gap-1 text-s">
+                      <strong>{workPermit.people}</strong>
+                    </small>
                     <p
                       className={`text-3xl ${
                         workPermit.typeWork === "Caliente"
@@ -96,10 +100,6 @@ function Map() {
                     >
                       <icons.locationDot />
                     </p>
-
-                    <small className="text-sm text-green-500 inline-flex items-center gap-1 text-s">
-                      <strong>{workPermit.people}</strong> <icons.helmet />
-                    </small>
                   </div>
                 )
             )}
