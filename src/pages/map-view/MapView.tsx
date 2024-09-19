@@ -18,9 +18,9 @@ function MapView() {
   }, [setSharedData]);
 
   return (
-    <div className="flex-1 relative z-10 flex flex-col h-screen w-screen min-w-[320px] min-h-[720px]">
+    <div className="flex-1 relative z-10 flex flex-col xl:h-screen h-auto w-screen min-w-[320px] min-h-[850px]">
       {/* top bar */}
-      <div className="lg:block hide w-full lg:h-16 border-b bg-white"></div>
+      <div className="lg:block hidden w-full h-16 border-b bg-white"></div>
       {/* title */}
       <div className="shadow p-4 bg-white">
         <div className="border-b pb-4 lg:text-left text-center">
@@ -29,7 +29,7 @@ function MapView() {
             Visualizacion de permisos abiertos en vivo
           </p>
         </div>
-        <p className="text-xs pt-1">
+        <p className="text-xs pt-1 md:block hidden">
           <Link to={"/app/"} className="text-blue-500">
             Inicio{" "}
           </Link>

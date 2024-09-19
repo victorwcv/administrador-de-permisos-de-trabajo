@@ -43,7 +43,7 @@ function SideBar() {
 
   return (
     <motion.div
-      className="2xl:relative absolute z-20"
+      className="2xl:relative fixed top-0 left-0 z-20"
       animate={{
         width: isOpen ? "256px" : "0px",
         transition: { duration: 0.5, ease: "easeInOut" },

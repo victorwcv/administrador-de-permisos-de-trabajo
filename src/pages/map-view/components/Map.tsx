@@ -26,11 +26,11 @@ function Map() {
       className={`${
         isFullScreen
           ? "fixed top-0 left-0 h-screen w-screen"
-          : "flex-1 relative p-4 overflow-auto bg-white rounded-md shadow-md"
+          : "lg:flex-1 lg:h-auto h-[70vh] lg:block relative p-4 overflow-auto bg-white rounded-md shadow-md"
       }`}
     >
       {/* zoom control */}
-      <div className="absolute top-12 right-12 z-10 rounded text-white bg-gradient-to-r from-accent-600 to-accent-500 flex flex-col border-2 border-accent-500">
+      <div className="absolute md:top-12 md:right-12 top-6 right-6 z-10 rounded text-white bg-gradient-to-r from-accent-600 to-accent-500 flex flex-col border-2 border-accent-500">
         <button
           onClick={handleZoom.bind(null, "in")}
           className=" text-2xl p-2 border border-accent-500 active:bg-accent-500"

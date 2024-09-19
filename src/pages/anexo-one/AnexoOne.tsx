@@ -37,7 +37,7 @@ function AnexoOne() {
   return (
     <div className="flex-1 relative z-10 flex flex-col h-screen w-screen min-w-[320px] min-h-[720px]">
       {/* top bar */}
-      <div className=" w-full lg:h-16 border-b bg-white"></div>
+      <div className=" w-full lg:block hidden h-16 border-b bg-white"></div>
 
       {/* title */}
       <div className="shadow p-4 bg-white">
@@ -47,7 +47,7 @@ function AnexoOne() {
             Gestión de apertura de permisos
           </p>
         </div>
-        <p className="text-xs pt-1">
+        <p className="text-xs pt-1 md:block hidden">
           <Link to={"/app/"} className="text-blue-500">
             Inicio{" "}
           </Link>

@@ -38,7 +38,7 @@ function CustomInput({
 
   if (as === "datalist") {
     return (
-      <div className="relative mb-4">
+      <div className="relative sm:w-auto w-full mb-4">
         <label htmlFor={name} className="block ml-1">
           {label}
         </label>

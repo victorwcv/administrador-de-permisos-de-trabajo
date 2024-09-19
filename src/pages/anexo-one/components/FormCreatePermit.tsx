@@ -125,205 +125,207 @@ function FormCreatePermit({ onClose }: FormCreatePermitProps) {
       transition={{ duration: 0.3, ease: "easeInOut" }}
       onClick={onClose}
     >
-      <div
-        className="relative bg-white mx-auto my-auto rounded-md overflow-hidden"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <div className="relative sm:text-left  text-center mb-8 bg-gradient-to-bl text-white from-accent-500 to-accent-600 p-4">
-          <h2 className="text-3xl font-bold text-primary-500">
-            Ingresar Nuevo PDT
-          </h2>
-          <p className="mt-2 text-sm">
-            * Completar todos los campos requeridos
-          </p>
-          <CustomButton
-            icon={<icons.times />}
-            btnStyles="bg-transparent absolute top-5 py-4 right-5"
-            onClick={onClose}
-          />
-        </div>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="display flex flex-wrap max-w-5xl justify-center gap-x-4 p-4">
-            <CustomInput
-              as="select"
-              options={["Tipo_2", "Tipo_3", "Tipo_4"]}
-              label="Categoria*"
-              name="category"
-              register={register("category", {
-                required: "Requerido",
-              })}
-              errors={errors}
-            />
-
-            <CustomInput
-              label="Codigo de PDT*"
-              name="codePDT"
-              register={register("codePDT", {
-                required: "Requerido",
-              })}
-              errors={errors}
-            />
-
-            <CustomInput
-              as="select"
-              options={["Caliente", "Frio"]}
-              label="Tipo de Trabajo*"
-              name="typeWork"
-              register={register("typeWork", {
-                required: "Requerido",
-              })}
-              errors={errors}
-            />
-
-            <CustomInput
-              type="time"
-              label="Hora Prog. Inicio*"
-              name="startProgHour"
-              register={register("startProgHour", {
-                required: "Requerido",
-              })}
-              errors={errors}
-            />
-
-            <CustomInput
-              as="select"
-              options={area}
-              label="Area/Sitio*"
-              name="area"
-              register={register("area", {
-                required: "Requerido",
-              })}
-              errors={errors}
-            />
-
-            <CustomInput
-              label="Equipo a Intervenir*"
-              name="equipment"
-              register={register("equipment", {
-                required: "Requerido",
-              })}
-              errors={errors}
-            />
-
-            <CustomInput
-              label="Descrip. de la Tarea*"
-              name="description"
-              register={register("description", {
-                required: "Requerido",
-              })}
-              errors={errors}
-            />
-
-            <CustomInput
-              type="number"
-              label="Num. Trabajadores en ATS*"
-              name="people"
-              register={register("people", {
-                valueAsNumber: true,
-                required: "Requerido",
-                validate: {
-                  min: (value) => (value > 0 ? true : "Número mínimo 1"),
-                  max: (value) => (value <= 50 ? true : "Número máximo 50"),
-                },
-              })}
-              errors={errors}
-            />
-
-            <CustomInput
-              as="select"
-              options={autority}
-              label="Autoridad Ejec.*"
-              name="authority"
-              register={register("authority", {
-                required: "Requerido",
-              })}
-              errors={errors}
-            />
-
-            <CustomInput
-              as="datalist"
-              options={contractor}
-              label="Emp. Contratista Ejec.*"
-              name="contractor"
-              register={register("contractor", {
-                required: "Requerido",
-              })}
-              errors={errors}
-            />
-
-            <CustomInput
-              label="Nombre de Ejec.*"
-              name="executorName"
-              register={register("executorName", {
-                required: "Requerido",
-              })}
-              errors={errors}
-            />
-
-            <CustomInput
-              label="Requerimientos"
-              name="requirements"
-              register={register("requirements", {
-                required: "Requerido",
-              })}
-              errors={errors}
-            />
-
-            <CustomInput
-              type="date"
-              label="Fecha Est. Inicio*"
-              name="estimatedStartDate"
-              register={register("estimatedStartDate", {
-                required: "Requerido",
-              })}
-              errors={errors}
-            />
-
-            <CustomInput
-              type="date"
-              label="Fecha Est. Fin*"
-              name="estimatedEndDate"
-              register={register("estimatedEndDate", {
-                required: "Requerido",
-              })}
-              errors={errors}
-            />
-
-            <CustomInput
-              as="select"
-              options={["Aprobado", "Rechazado"]}
-              label="Aprobado*"
-              name="approved"
-              register={register("approved")}
-              errors={errors}
-            />
-
-            <CustomInput
-              label="Comentarios*"
-              name="comments"
-              register={register("comments")}
-              errors={errors}
-            />
-          </div>
-
-          <div className="flex m-4 justify-end">
+      <div className="m-auto">
+        <div
+          className="relative bg-white w-fit h-fit m-2 rounded-md overflow-hidden"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <div className="relative sm:text-left  text-center mb-8 bg-gradient-to-bl text-white from-accent-500 to-accent-600 p-4">
+            <h2 className="text-3xl font-bold text-primary-500">
+              Ingresar Nuevo PDT
+            </h2>
+            <p className="mt-2 text-sm">
+              * Completar todos los campos requeridos
+            </p>
             <CustomButton
-              label={status.loading ? "Guardando..." : "Guardar"}
-              type="submit"
-              btnStyles="w-40"
+              icon={<icons.times />}
+              btnStyles="bg-transparent absolute top-5 py-4 right-5"
+              onClick={onClose}
             />
           </div>
-        </form>
-        {status.status && (
-          <p className="absolute left-4 bottom-4 text-sm text-green-500">
-            {status.message}
-          </p>
-        )}
-        {!status.status && (
-          <p className="absolute left-4 bottom-4 text-sm text-red-500">
-            {status.message}
-          </p>
-        )}
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div className="display flex flex-wrap max-w-5xl justify-center gap-x-4 p-4">
+              <CustomInput
+                as="select"
+                options={["Tipo_2", "Tipo_3", "Tipo_4"]}
+                label="Categoria*"
+                name="category"
+                register={register("category", {
+                  required: "Requerido",
+                })}
+                errors={errors}
+              />
+
+              <CustomInput
+                label="Codigo de PDT*"
+                name="codePDT"
+                register={register("codePDT", {
+                  required: "Requerido",
+                })}
+                errors={errors}
+              />
+
+              <CustomInput
+                as="select"
+                options={["Caliente", "Frio"]}
+                label="Tipo de Trabajo*"
+                name="typeWork"
+                register={register("typeWork", {
+                  required: "Requerido",
+                })}
+                errors={errors}
+              />
+
+              <CustomInput
+                type="time"
+                label="Hora Prog. Inicio*"
+                name="startProgHour"
+                register={register("startProgHour", {
+                  required: "Requerido",
+                })}
+                errors={errors}
+              />
+
+              <CustomInput
+                as="select"
+                options={area}
+                label="Area/Sitio*"
+                name="area"
+                register={register("area", {
+                  required: "Requerido",
+                })}
+                errors={errors}
+              />
+
+              <CustomInput
+                label="Equipo a Intervenir*"
+                name="equipment"
+                register={register("equipment", {
+                  required: "Requerido",
+                })}
+                errors={errors}
+              />
+
+              <CustomInput
+                label="Descrip. de la Tarea*"
+                name="description"
+                register={register("description", {
+                  required: "Requerido",
+                })}
+                errors={errors}
+              />
+
+              <CustomInput
+                type="number"
+                label="Num. Trabajadores en ATS*"
+                name="people"
+                register={register("people", {
+                  valueAsNumber: true,
+                  required: "Requerido",
+                  validate: {
+                    min: (value) => (value > 0 ? true : "Número mínimo 1"),
+                    max: (value) => (value <= 50 ? true : "Número máximo 50"),
+                  },
+                })}
+                errors={errors}
+              />
+
+              <CustomInput
+                as="select"
+                options={autority}
+                label="Autoridad Ejec.*"
+                name="authority"
+                register={register("authority", {
+                  required: "Requerido",
+                })}
+                errors={errors}
+              />
+
+              <CustomInput
+                as="datalist"
+                options={contractor}
+                label="Emp. Contratista Ejec.*"
+                name="contractor"
+                register={register("contractor", {
+                  required: "Requerido",
+                })}
+                errors={errors}
+              />
+
+              <CustomInput
+                label="Nombre de Ejec.*"
+                name="executorName"
+                register={register("executorName", {
+                  required: "Requerido",
+                })}
+                errors={errors}
+              />
+
+              <CustomInput
+                label="Requerimientos"
+                name="requirements"
+                register={register("requirements", {
+                  required: "Requerido",
+                })}
+                errors={errors}
+              />
+
+              <CustomInput
+                type="date"
+                label="Fecha Est. Inicio*"
+                name="estimatedStartDate"
+                register={register("estimatedStartDate", {
+                  required: "Requerido",
+                })}
+                errors={errors}
+              />
+
+              <CustomInput
+                type="date"
+                label="Fecha Est. Fin*"
+                name="estimatedEndDate"
+                register={register("estimatedEndDate", {
+                  required: "Requerido",
+                })}
+                errors={errors}
+              />
+
+              <CustomInput
+                as="select"
+                options={["Aprobado", "Rechazado"]}
+                label="Aprobado*"
+                name="approved"
+                register={register("approved")}
+                errors={errors}
+              />
+
+              <CustomInput
+                label="Comentarios*"
+                name="comments"
+                register={register("comments")}
+                errors={errors}
+              />
+            </div>
+
+            <div className="flex m-4 justify-end">
+              <CustomButton
+                label={status.loading ? "Guardando..." : "Guardar"}
+                type="submit"
+                btnStyles="w-40"
+              />
+            </div>
+          </form>
+          {status.status && (
+            <p className="absolute left-4 bottom-4 text-sm text-green-500">
+              {status.message}
+            </p>
+          )}
+          {!status.status && (
+            <p className="absolute left-4 bottom-4 text-sm text-red-500">
+              {status.message}
+            </p>
+          )}
+        </div>
       </div>
     </motion.div>
   );
