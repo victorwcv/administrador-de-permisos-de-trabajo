@@ -1,8 +1,9 @@
 import { icons } from "../../../assets/icons/IconProvider";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
+import { useUser } from "../../../context/UserContext";
 
 const sidebarOptions = [
   {
@@ -41,14 +42,35 @@ function SideBar() {
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
 
+  const { setUser } = useUser();
+
+  const handleLogout = () => {
+    sessionStorage.removeItem("user");
+    setUser(null);
+  };
+
   return (
     <motion.div
-      className="2xl:relative fixed top-0 left-0 z-20"
+      className="2xl:relative fixed top-0 left-0 z-30"
       animate={{
         width: isOpen ? "256px" : "0px",
         transition: { duration: 0.5, ease: "easeInOut" },
       }}
     >
+      {/* OVERLAY */}
+      <AnimatePresence>
+      { isOpen && <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.3, ease: "easeInOut" }}
+        className="fixed top-0 left-0 w-full h-full bg-black/20 backdrop-blur-md select-none"
+        onClick={() => {
+          setIsOpen(false);
+        }}
+      ></motion.div>}
+      </AnimatePresence>
+
       {/* HAMBURGER ICON */}
       <div className="absolute top-2 -right-11 bg-white border-t border-b border-r rounded-r-lg overflow-hidden z-20">
         <motion.button
@@ -79,7 +101,9 @@ function SideBar() {
             <p className="text-white">Victor William Ccanchi Vasquez</p>
             <div className="flex gap-4 p-2 text-white">
               <icons.user />
-              <icons.logout />
+              <button onClick={handleLogout}>
+                <icons.logout />
+              </button>
             </div>
           </div>
         </div>

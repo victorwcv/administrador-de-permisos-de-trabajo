@@ -5,7 +5,7 @@ import { useUser } from "../context/UserContext";
 function PublicRoute() {
   const { user } = useUser();
 
-  return !user ? <LoginPage /> : <Navigate to="/app/anexo-one" />;
+  return !user ? <LoginPage /> : <Navigate to={"/app/anexo-one"} />;
 }
 
 export default PublicRoute;

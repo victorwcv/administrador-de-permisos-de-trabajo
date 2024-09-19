@@ -40,11 +40,9 @@ function SearchPDT() {
     if (localResults.length > 0) {
       // Si se encuentran resultados en el estado local, actualiza el estado
       setSharedData(localResults);
-      console.log("localResults", localResults);
     } else {
       // Si no se encuentran resultados, busca en la base de datos
       const result = await getDocumentByPDTfromDB(filterString);
-      console.log("results from DB", result);
 
       if (result) {
         setSharedData(result as WorkPermit[]);
@@ -67,6 +65,7 @@ function SearchPDT() {
         onSubmit={handleSubmit(onsubmit)}
       >
         <CustomInput
+          type="text"
           name={"codePDT"}
           register={register("codePDT")}
           placeholder="Buscar PDT"
@@ -76,7 +75,7 @@ function SearchPDT() {
         <CustomButton
           type="submit"
           icon={<icons.search />}
-          btnStyles="h-11 mb-4 w-16 rounded-l-none focus:ring-transparent"
+          btnStyles="h-11 mb-4 w-16 rounded-l-none outline-none"
         />
       </form>
     </div>

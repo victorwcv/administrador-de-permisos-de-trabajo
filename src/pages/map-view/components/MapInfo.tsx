@@ -76,7 +76,7 @@ function MapInfo() {
             </>
           ) : (
             <div className="h-full flex flex-col justify-center items-center py-4">
-              <icons.locationDot className="w-16 h-16 fill-red-500" />
+              <icons.locationDot className="w-10 h-10 fill-red-500" />
               <p className=" font-semibold text-center max-w-60">
                 Seleccione un permiso para ver los detalles
               </p>

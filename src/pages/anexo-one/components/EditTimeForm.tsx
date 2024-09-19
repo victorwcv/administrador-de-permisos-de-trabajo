@@ -21,7 +21,6 @@ interface StatusProps {
 
 function EditTimeForm({ onClose, permitData }: EditTimeFormProps) {
   const { setSharedData } = useAppContext();
-  console.log(permitData);
 
   const [coordinates, setCoordinates] = useState<Coordinates | undefined>();
   const [showMap, setShowMap] = useState(false);
@@ -56,7 +55,6 @@ function EditTimeForm({ onClose, permitData }: EditTimeFormProps) {
     };
 
     setStatus({ loading: true, success: false });
-    console.log(permitData.id, newValues);
 
     const result = await updateReportInDB(permitData.id, newValues);
 
@@ -111,7 +109,7 @@ function EditTimeForm({ onClose, permitData }: EditTimeFormProps) {
 
   return (
     <motion.div
-      className="h-screen w-screen fixed inset-0 bg-black/20 backdrop-blur-sm z-20 flex overflow-auto"
+      className="h-screen w-screen fixed inset-0 bg-black/20 backdrop-blur-md z-20 flex select-none overflow-auto"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -233,7 +231,7 @@ function EditTimeForm({ onClose, permitData }: EditTimeFormProps) {
                     }}
                   >
                     <img
-                      src="/map-pp-transformed2.webp"
+                      src="/new-plant.webp"
                       alt="Descripción"
                       onClick={onImageClick}
                       className="w-[1440px] h-[810px]"

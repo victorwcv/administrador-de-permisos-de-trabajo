@@ -72,7 +72,7 @@ function FormCreatePermit({ onClose }: FormCreatePermitProps) {
       });
 
       // Actualizar el estado del contexto global si se guardaron los datos correctamente
-      setSharedData((prevData) => [...prevData, values] as WorkPermit[]);
+      setSharedData((prevData) => [...prevData, result] as WorkPermit[]);
 
       reset();
     } else {
@@ -118,7 +118,7 @@ function FormCreatePermit({ onClose }: FormCreatePermitProps) {
 
   return (
     <motion.div
-      className="h-screen w-screen fixed inset-0 bg-black/20 backdrop-blur-sm z-20 flex overflow-auto"
+      className="h-screen w-screen fixed inset-0 bg-black/20 backdrop-blur-md z-20 select-none flex overflow-auto"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}

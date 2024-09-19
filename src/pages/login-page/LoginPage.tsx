@@ -9,8 +9,7 @@ function LoginPage() {
   const { setUser } = useUser();
   const mailKey = import.meta.env.VITE_MAIL_KEY;
   const passwordKey = import.meta.env.VITE_PASS_KEY;
-  console.log(mailKey, passwordKey);
-  
+
   const {
     register,
     handleSubmit,
@@ -23,9 +22,10 @@ function LoginPage() {
   });
 
   const onSubmit = (values: any) => {
-    console.log(values);
     if (values.email === mailKey && values.password === passwordKey) {
       setUser({ email: values.email });
+      sessionStorage.setItem("usuario", JSON.stringify(values.email));
+      
     } else {
       setError("Credenciales incorrectas");
     }
@@ -39,7 +39,7 @@ function LoginPage() {
         alt="bg"
         className="w-full h-full absolute object-cover -z-20"
       />
-      <div className="bg-white bg-opacity-90 shadow-xl rounded-lg p-8 max-w-md w-full space-y-6">
+      <div className="bg-white bg-opacity-90 shadow-xl rounded-lg p-8 m-2 max-w-md w-full space-y-6">
         <div className="text-center">
           <h2 className="text-3xl font-bold text-primary-500">Bienvenido</h2>
           <p className="mt-2 text-sm">Accede a tu cuenta</p>

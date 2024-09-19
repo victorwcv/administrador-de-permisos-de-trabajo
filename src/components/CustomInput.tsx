@@ -25,7 +25,7 @@ function CustomInput({
   name,
   register,
   errors = {},
-  inputStyle = "",
+  inputStyle = "focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent",
   onBlur = () => {},
   value,
   onChange = () => {},
@@ -50,8 +50,7 @@ function CustomInput({
           placeholder={placeholder}
           className={`block w-full px-3 py-2 border ${inputStyle} ${
             errors[name] ? "border-red-500" : "dark:border-space-400"
-          } rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent focus:dark:border-transparent resize-none`}
-
+          } rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent resize-none`}
         />
         <datalist id={`options-${name}`}>
           {options.map((option) => (
@@ -134,9 +133,9 @@ function CustomInput({
           type={showPassword ? "text" : type}
           {...register}
           placeholder={placeholder}
-          className={`block w-full min-w-52 h-11 px-3 py-2 border ${inputStyle} ${
+          className={`block w-full min-w-52 h-11 px-3 py-2 border outline-none ${inputStyle} ${
             errors[name] ? "border-red-500" : "dark:border-space-400"
-          } rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent focus:dark:border-transparent`}
+          } rounded-md shadow-sm `}
           onBlur={onBlur}
           value={value}
         />

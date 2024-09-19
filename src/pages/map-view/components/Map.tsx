@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { icons } from "../../../assets/icons/IconProvider";
 import { handleWheel } from "../../../utils/wheelScroll";
 import { useAppContext } from "../../../context/AppContext";
@@ -21,12 +21,22 @@ function Map() {
     }
   };
 
+  useEffect(() => {
+    if (scrollRef.current && !isFullScreen) {
+      scrollRef.current.scrollTo({
+        top: 100,
+        left: 500,
+        behavior: "smooth",
+      });
+    }
+  }, []);
+
   return (
     <div
       className={`${
         isFullScreen
           ? "fixed top-0 left-0 h-screen w-screen"
-          : "lg:flex-1 lg:h-auto h-[70vh] lg:block relative p-4 overflow-auto bg-white rounded-md shadow-md"
+          : "lg:flex-1 lg:h-auto h-[500px] lg:block relative p-4 overflow-auto bg-white rounded-md shadow-md"
       }`}
     >
       {/* zoom control */}
@@ -62,7 +72,7 @@ function Map() {
         >
           <div className="relative w-max h-max">
             <img
-              src="/map-pp-transformed2.webp"
+              src="/new-plant.webp"
               alt="Descripción"
               style={{
                 width: `${size.width.toString()}px`,
@@ -82,10 +92,7 @@ function Map() {
                       left: `${workPermit.coordinates?.x}%`,
                       transform: "translate(-50%, -75%)",
                     }}
-                    onClick={() => {
-                      console.log(workPermit);
-                      setWorkPermit(workPermit);
-                    }}
+                    onClick={() => setWorkPermit(workPermit)}
                     title={workPermit.codePDT + " " + "Click para ver detalles"}
                   >
                     <small className="text-xs text-white bg-black px-1 rounded inline-flex items-center gap-1 text-s">

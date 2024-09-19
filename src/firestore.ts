@@ -30,7 +30,7 @@ export const saveNewReportToDB = async (data: Partial<WorkPermit>) => {
     await setDoc(docRef, dataWithId);
     console.log("Document written with ID: ", id);
 
-    return true;
+    return dataWithId;
   } catch (e) {
     console.error("Error adding document: ", e);
     return false;

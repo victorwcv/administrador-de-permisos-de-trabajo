@@ -19,7 +19,6 @@ function FilterSection() {
   const [isFilterTabOpen, setIsFilterTabOpen] = useState<boolean>(false);
   // Ref para evitar el re-render de los datos
   const dataRef = useRef<WorkPermit[] | null>(null);
-  console.log(dataRef.current);
 
   const {
     register,
@@ -32,18 +31,14 @@ function FilterSection() {
   });
 
   const onSubmit = async (values: ValuesSubmit) => {
-    console.log(values);
 
     // setear Ref para no hacer renderizado
     if (!dataRef.current) {
-      console.log("setear Ref para no hacer renderizado");
       dataRef.current = sharedData;
-      console.log(dataRef.current);
     }
 
     // Si la fecha es la actual, restaura los datos desde la referencia
     if (formatDate() === values.date) {
-      console.log(formatDate(), values.date);
 
       setSharedData(dataRef.current);
       dataRef.current = null;
