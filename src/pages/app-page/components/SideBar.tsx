@@ -46,6 +46,7 @@ function SideBar() {
 
   const handleLogout = () => {
     localStorage.removeItem("user");
+    localStorage.removeItem("lastPath");
     setUser(null);
   };
 

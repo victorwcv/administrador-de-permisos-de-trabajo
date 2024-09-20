@@ -1,7 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
 import ErrorPage from "./components/ErrorPage";
-import PublicRoute from "./components/PublicRoute";
 import LoginPage from "./pages/login-page/LoginPage";
 import PrivateRoute from "./components/PrivateRoute";
 import AnexoOne from "./pages/anexo-one/AnexoOne";
@@ -16,13 +15,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "",
-        element: <PublicRoute />,
-        children: [
-          {
-            path: "",
-            element: <LoginPage />,
-          },
-        ],
+        element: <LoginPage />,
       },
       {
         path: "app/",

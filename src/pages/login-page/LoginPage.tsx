@@ -1,12 +1,14 @@
 import { useForm } from "react-hook-form";
 import CustomInput from "../../components/CustomInput";
 import CustomButton from "../../components/CustomButton";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useUser } from "../../context/UserContext";
+import { useNavigate } from "react-router-dom";
 
 function LoginPage() {
   const [error, setError] = useState<boolean | string>(false);
-  const { setUser } = useUser();
+  const { user, setUser } = useUser();
+  const navigate = useNavigate();
   const mailKey = import.meta.env.VITE_MAIL_KEY;
   const passwordKey = import.meta.env.VITE_PASS_KEY;
 
@@ -24,12 +26,19 @@ function LoginPage() {
   const onSubmit = (values: any) => {
     if (values.email === mailKey && values.password === passwordKey) {
       setUser({ email: values.email });
-      localStorage.setItem("usuario", JSON.stringify(values.email));
-      
+      localStorage.setItem("user", JSON.stringify(values.email));
+      navigate("/app/anexo-one");
     } else {
       setError("Credenciales incorrectas");
     }
   };
+
+  useEffect(() => {
+    if (user?.email) {
+      navigate("/app/anexo-one");
+    }
+  }, [user, navigate]);
+
 
   return (
     <div className="relative flex justify-center items-center h-screen min-h-[720px]">
