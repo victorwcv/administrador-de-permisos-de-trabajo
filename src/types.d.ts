@@ -1,3 +1,5 @@
+import { Timestamp } from "firebase/firestore";
+
 export interface WorkPermit {
   id: string;
   category?: string;
@@ -20,6 +22,7 @@ export interface WorkPermit {
   closeHour: string | null;
   date: string;
   coordinates?: Coordinates;
+  createdAt?: Timestamp;
 }
 
 export type Coordinates = { x: number | null; y: number | null };

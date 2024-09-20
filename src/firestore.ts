@@ -11,6 +11,7 @@ import {
   DocumentData,
   onSnapshot,
   Unsubscribe,
+  serverTimestamp,
 } from "firebase/firestore";
 import { db } from "./firebase";
 import { WorkPermit } from "./types";
@@ -20,11 +21,11 @@ import { formatDate } from "./utils/dates";
 export const saveNewReportToDB = async (data: Partial<WorkPermit>) => {
   try {
     // Generar el ID manualmente
-    const docRef = doc(collection(db, "reports"));
+    const docRef = doc(collection(db, "reports",));
     const id = docRef.id;
 
     // Agregar el id al objeto data
-    const dataWithId = { ...data, id };
+    const dataWithId = { ...data, id, createdAt: serverTimestamp() };
 
     // Guardar el documento con el id incluido en el objeto
     await setDoc(docRef, dataWithId);
