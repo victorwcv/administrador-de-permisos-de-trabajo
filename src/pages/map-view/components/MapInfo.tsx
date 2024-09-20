@@ -17,7 +17,7 @@ function MapInfo() {
         <p>{formatDayMonthYear(formatDate())}</p>
       </div>
       <br />
-      <div className=" flex-1 flex lg:flex-col sm:flex-row flex-col justify-center items-center gap-8">
+      <div className="relative flex-1 flex lg:flex-col sm:flex-row flex-col justify-center items-center gap-8">
         {/* general info */}
         <div className="p-4">
           <ul className="text-center">

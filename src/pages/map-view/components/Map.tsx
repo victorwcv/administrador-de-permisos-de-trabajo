@@ -3,6 +3,8 @@ import { icons } from "../../../assets/icons/IconProvider";
 import { handleWheel } from "../../../utils/wheelScroll";
 import { useAppContext } from "../../../context/AppContext";
 import { usePlotContext } from "../../../context/PlotContext";
+import FullScreenMapInfo from "./FullScreenMapInfo";
+import FullScreenPermitDetails from "./FullScreenPermitDetails";
 
 function Map() {
   const { sharedData } = useAppContext();
@@ -35,10 +37,16 @@ function Map() {
     <div
       className={`${
         isFullScreen
-          ? "fixed top-0 left-0 h-screen w-screen"
+          ? "fixed top-0 left-0 h-screen w-screen z-20"
           : "lg:flex-1 lg:h-auto h-[500px] lg:block relative p-4 overflow-auto bg-white rounded-md shadow-md"
       }`}
     >
+      {/* details on fullscreen */}
+      {isFullScreen && <FullScreenMapInfo />}
+
+      {/* permit details on fullscreen */}
+      {isFullScreen && <FullScreenPermitDetails />}
+
       {/* zoom control */}
       <div className="absolute md:top-12 md:right-12 top-6 right-6 z-10 rounded text-white bg-gradient-to-r from-accent-600 to-accent-500 flex flex-col border-2 border-accent-500">
         <button

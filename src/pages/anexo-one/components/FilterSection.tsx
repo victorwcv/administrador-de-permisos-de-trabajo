@@ -31,7 +31,6 @@ function FilterSection() {
   });
 
   const onSubmit = async (values: ValuesSubmit) => {
-
     // setear Ref para no hacer renderizado
     if (!dataRef.current) {
       dataRef.current = sharedData;
@@ -39,7 +38,6 @@ function FilterSection() {
 
     // Si la fecha es la actual, restaura los datos desde la referencia
     if (formatDate() === values.date) {
-
       setSharedData(dataRef.current);
       dataRef.current = null;
     } else {
@@ -70,22 +68,23 @@ function FilterSection() {
   return (
     <div>
       <div className="bg-white m-4 shadow rounded">
-        <div className="w-full flex items-center gap-4 px-6 py-3 border-b">
+        <div
+          className="w-full flex items-center gap-4 px-6 py-3 border-b cursor-pointer"
+          onClick={() => setIsFilterTabOpen(!isFilterTabOpen)}
+        >
           <icons.filter />
           <p
-            className="text-lg font-bold cursor-pointer"
-            onClick={() => setIsFilterTabOpen(!isFilterTabOpen)}
+            className="text-lg font-bold"
           >
             Filtrar PDTs
           </p>
-          <motion.button
+          <motion.div
             className="ml-auto p-1 outline-none"
-            onClick={() => setIsFilterTabOpen(!isFilterTabOpen)}
             animate={{ rotate: isFilterTabOpen ? 180 : 0 }}
             transition={{ duration: 0.5 }}
           >
             <icons.chevronDown />
-          </motion.button>
+          </motion.div>
         </div>
         <AnimatePresence>
           {isFilterTabOpen && (

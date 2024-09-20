@@ -24,7 +24,7 @@ function LoginPage() {
   const onSubmit = (values: any) => {
     if (values.email === mailKey && values.password === passwordKey) {
       setUser({ email: values.email });
-      sessionStorage.setItem("usuario", JSON.stringify(values.email));
+      localStorage.setItem("usuario", JSON.stringify(values.email));
       
     } else {
       setError("Credenciales incorrectas");

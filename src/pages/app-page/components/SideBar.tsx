@@ -12,16 +12,6 @@ const sidebarOptions = [
     to: "",
   },
   {
-    label: "Tableros",
-    icon: icons.dashboard,
-    to: "",
-  },
-  {
-    label: "Permisos de Trabajo",
-    icon: icons.document,
-    to: "",
-  },
-  {
     label: "Anexo 1",
     icon: icons.documentCheck,
     to: "/app/anexo-one",
@@ -30,6 +20,16 @@ const sidebarOptions = [
     label: "Ubicación de permisos",
     icon: icons.location,
     to: "/app/map-view",
+  },
+  {
+    label: "Tableros",
+    icon: icons.dashboard,
+    to: "",
+  },
+  {
+    label: "Permisos de Trabajo",
+    icon: icons.document,
+    to: "",
   },
   {
     label: "Institucional",
@@ -45,7 +45,7 @@ function SideBar() {
   const { setUser } = useUser();
 
   const handleLogout = () => {
-    sessionStorage.removeItem("user");
+    localStorage.removeItem("user");
     setUser(null);
   };
 

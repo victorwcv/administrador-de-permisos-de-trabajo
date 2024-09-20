@@ -20,7 +20,6 @@ import {
   FaRightFromBracket,
   FaMapLocation,
   FaLocationDot,
-  FaHelmetSafety,
 } from "react-icons/fa6";
 import {
   MdEditDocument,
@@ -32,6 +31,8 @@ import { IoIosDocument } from "react-icons/io";
 import { HiDocumentText, HiDocumentCheck } from "react-icons/hi2";
 import { IoMenu } from "react-icons/io5";
 import { BsFullscreen, BsFullscreenExit } from "react-icons/bs";
+import { GrDocumentTime, GrDocumentUser, GrDocumentLocked,  } from "react-icons/gr";
+import { LiaHardHatSolid } from "react-icons/lia";
 
 export const icons = {
   eye: FaEye,
@@ -63,5 +64,8 @@ export const icons = {
   trash: FaTrash,
   edit: FaEdit,
   timer: MdTimer,
-  helmet: FaHelmetSafety,
+  helmet: LiaHardHatSolid,
+  permitClosed: GrDocumentLocked,
+  permitExecution: GrDocumentUser,
+  permitProgramed: GrDocumentTime,
 };

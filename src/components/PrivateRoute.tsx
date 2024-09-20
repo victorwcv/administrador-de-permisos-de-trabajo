@@ -9,7 +9,7 @@ function PrivateRoute() {
   const location = useLocation();
 
   useEffect(() => {
-    const storedUser = sessionStorage.getItem("usuario");
+    const storedUser = localStorage.getItem("usuario");
     if (storedUser) {
       setUser({ email: storedUser });
     }
@@ -17,7 +17,7 @@ function PrivateRoute() {
 
   useEffect(() => {
     if (user) {
-      sessionStorage.setItem("lastPath", location.pathname);
+      localStorage.setItem("lastPath", location.pathname);
     }
   }, [location.pathname]);
   
